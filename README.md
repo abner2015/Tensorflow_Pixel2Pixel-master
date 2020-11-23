@@ -1,7 +1,6 @@
 # Tensorflow_Pixel2Pixel
+project from 'https://github.com/OFRIN/Tensorflow_Pixel2Pixel'
 
-## Results (label2facade)
-![result](./results/99.jpg)
 
 ## Requirements
 - Tensorflow 1.13.1
