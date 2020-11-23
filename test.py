@@ -5,6 +5,7 @@
 @file:test.py
 @ datetime:2020/11/20 13:48
 @software: PyCharm
+通过checkpoint 文件进行predict
 
 """
 
@@ -17,6 +18,7 @@ from matplotlib import pyplot as plt
 from tensorflow.python.tools import inspect_checkpoint as chkp
 
 def predict():
+    
     input_var = tf.placeholder(tf.float32, [None, 256, 256, 3])
 
     # sess.run(input_var)
@@ -39,18 +41,10 @@ def predict():
     vars_list = tf.train.list_variables(checkpoint_path)
     print(vars_list)
     pred = sess.run(label, feed_dict={input: [src_image]})[0]
-    # pred = Generator(input_var)
-    # pred = pred.eval(session=sess)
-    # plt.imshow(pred)
-    # # plt.figure()
-    # # plt.imshow(re/255.0)
-    # plt.show()
+
     cv2.imshow("Generator image",pred)
     cv2.waitKey(0)
     # generator = Generator()
-
-
-    # plt.imshow(gen_output[0, ...])
 
 def p():
     OUTPUT_IMAGE_CHANNEL = 3
@@ -76,21 +70,6 @@ def p():
     cv2.imshow("d", pred)
     cv2.waitKey(0)
 
-
-def generate_images(model, test_input, tar):
-  prediction = model(test_input, training=True)
-  plt.figure(figsize=(15,15))
-
-  display_list = [test_input[0], tar[0], prediction[0]]
-  title = ['Input Image', 'Ground Truth', 'Predicted Image']
-
-  for i in range(3):
-    plt.subplot(1, 3, i+1)
-    plt.title(title[i])
-    # getting the pixel values between [0, 1] to plot it.
-    plt.imshow(display_list[i] * 0.5 + 0.5)
-    plt.axis('off')
-  plt.show()
 
 def show_checkpoint():
     print(chkp.print_tensors_in_checkpoint_file("./model/Pixel2Pixel_1.ckpt", tensor_name='', all_tensors=True))
